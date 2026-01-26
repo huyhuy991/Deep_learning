@@ -1,68 +1,75 @@
-Xét Tuyển Đại Học – Thống Kê và Trực Quan Hóa Dữ Liệu (Tuần 2)
-Giới thiệu
-Tiếp nối quá trình làm sạch dữ liệu ở tuần 1, dự án tuần này tập trung vào việc sử dụng các kỹ thuật thống kê mô tả, bảng xoay dữ liệu (Pivot Table) và các công cụ trực quan hóa (Matplotlib, Seaborn) để phân tích sâu hơn về kết quả học tập và xét tuyển của các thí sinh.
+# Xét Tuyển Đại Học – Thống Kê và Trực Quan Hóa Dữ Liệu (Tuần 2)
 
-Công nghệ sử dụng
-Ngôn ngữ: Python
+## Giới thiệu
 
-Thư viện chính:
+Tiếp nối quá trình làm sạch dữ liệu ở tuần 1, dự án tuần 2 tập trung vào việc sử dụng các kỹ thuật thống kê mô tả, bảng xoay dữ liệu (Pivot Table) và các công cụ trực quan hóa để phân tích sâu hơn về kết quả học tập và các yếu tố ảnh hưởng đến điểm thi của thí sinh.
 
-pandas: Thao tác và biến đổi dữ liệu.
+---
 
-numpy: Xử lý toán học và tính toán phân vị.
+## Công nghệ sử dụng
 
-matplotlib & seaborn: Trực quan hóa dữ liệu (biểu đồ đường, cột, tròn, hộp...).
+* **Ngôn ngữ**: Python
+* **Thư viện**:
+* `pandas`, `numpy`: Thao tác và biến đổi dữ liệu.
+* `matplotlib`, `seaborn`: Trực quan hóa dữ liệu (biểu đồ đường, cột, tròn, hộp...).
+* `scipy`, `statsmodels`: Hỗ trợ phân tích thống kê và kiểm tra phân phối.
 
-scipy & statsmodels: Hỗ trợ phân phối thống kê và biểu đồ Q-Q plot.
 
-Môi trường: Jupyter Notebook / Google Colab.
+* **Môi trường**: Jupyter Notebook / Google Colab.
 
-Nội dung thực hiện
-1. Thống kê mô tả và Sắp xếp dữ liệu
-Đọc dữ liệu đã xử lý từ file processed_dulieuxettuyendaihoc.csv.
+---
 
-Sắp xếp thứ tự thí sinh dựa trên điểm thi đại học (DH1, DH2) theo các tiêu chí tăng dần và theo nhóm giới tính.
+## Cách hoạt động
 
-Sử dụng Pivot Table để tổng hợp các giá trị: count, sum, mean, median, min, max, std và các tứ phân vị (Q1, Q2, Q3) của điểm thi theo Khối thi (KT) và Khu vực (KV).
+### 1. Thống kê mô tả và Sắp xếp
 
-2. Phân tích theo nhóm dữ liệu
-Thống kê số lượng thí sinh theo giới tính (GT).
+* Đọc dữ liệu đã qua tiền xử lý từ file `processed_dulieuxettuyendaihoc.csv`.
+* Thực hiện sắp xếp thí sinh theo điểm thi (`DH1`, `DH2`) và giới tính để quan sát thứ hạng.
+* Sử dụng **Pivot Table** để tính toán các chỉ số: `count`, `sum`, `mean`, `median`, `min`, `max`, `std` và các tứ phân vị (`Q1`, `Q2`, `Q3`) dựa trên Khối thi (`KT`) và Khu vực (`KV`).
 
-Phân tích dữ liệu điểm trung bình hệ Mỹ (US_TBM) qua các năm.
+### 2. Phân tích nhóm dữ liệu
 
-Trích xuất dữ liệu riêng biệt cho nhóm thí sinh nam, dân tộc Kinh và có điểm thi đạt ngưỡng yêu cầu.
+* Phân tích cơ cấu giới tính (`GT`) và dân tộc của thí sinh.
+* Chuyển đổi điểm trung bình môn từ thang điểm 10 (Việt Nam) sang thang điểm 4 (Mỹ) bằng phương pháp chuẩn hóa.
+* Phân lớp dữ liệu môn Toán (`T1`) thành các mức: Kém, Trung bình, Khá, Giỏi.
 
-3. Trực quan hóa dữ liệu
-Biểu đồ Bar & Pie: Thể hiện tỉ lệ giới tính thí sinh.
+### 3. Trực quan hóa dữ liệu
 
-Biểu đồ Unstacked: So sánh xếp loại học lực (XL1, XL2, XL3) của học sinh nữ qua 3 năm.
+* **Biểu đồ cột (Bar) & Tròn (Pie)**: Trình bày tỉ lệ giới tính và phân lớp học lực.
+* **Biểu đồ Đường (Line)**: Khảo sát sự biến thiên của điểm số.
+* **Biểu đồ Hộp (Boxplot)**: Xác định giá trị ngoại lai (outliers) và khoảng biến thiên điểm số theo từng nhóm khu vực.
+* **Biểu đồ Histogram & Q-Q Plot**: Kiểm tra phân phối của dữ liệu có tuân theo phân phối chuẩn hay không.
 
-Biểu đồ Đường (Line chart): Khảo sát sự biến thiên của điểm môn Toán (T1).
+### 4. Phân tích tương quan
 
-Biểu đồ Hộp (Box plot): Xác định giá trị ngoại lai và khoảng phân bố điểm số.
+* Sử dụng biểu đồ phân tán (**Scatter Plot**) và **FacetGrid** để tìm mối liên hệ giữa điểm thi đại học và điểm học tập lớp 12 theo từng khu vực.
 
-Biểu đồ Histogram: Xem tần suất xuất hiện của các khoảng điểm.
+---
 
-Q-Q Plot: Kiểm tra xem phân phối điểm số có tiệm cận phân phối chuẩn hay không.
+## Kết quả
 
-4. Phân lớp dữ liệu
-Tạo biến mới phanlopt1 để phân loại điểm môn Toán (T1) thành các mức: Kém, Trung bình, Khá, Giỏi.
+* Hiểu rõ cấu trúc phân bố điểm thi của thí sinh.
+* Xác định được mối liên hệ giữa khu vực, giới tính và kết quả thi đại học thông qua hình ảnh trực quan.
+* File đầu ra sẵn sàng cho các mô hình dự báo học tập nâng cao.
 
-Trực quan hóa mối tương quan giữa điểm thi đại học và điểm trung bình lớp 12 theo từng Khu vực bằng FacetGrid.
+---
 
-Kết quả đạt được
-Hiểu rõ cấu trúc phân bố điểm thi của thí sinh qua các biểu đồ thống kê.
+## Giao diện
 
-Xác định được mối liên hệ giữa khu vực, giới tính và kết quả thi đại học.
+* Không có giao diện web.
+* Kết quả đồ họa hiển thị trực tiếp trong notebook (Inline plots) và các báo cáo thống kê dạng bảng.
 
-Báo cáo chi tiết các chỉ số thống kê quan trọng phục vụ cho việc dự báo kết quả tuyển sinh.
+---
 
-Cách chạy chương trình
-Đảm bảo đã có file dữ liệu processed_dulieuxettuyendaihoc.csv trong cùng thư mục.
+## Cách chạy chương trình
 
-Cài đặt các thư viện cần thiết: pip install pandas numpy matplotlib seaborn scipy statsmodels.
+1. Mở file notebook `2374802010190_TranMinhHuy_week2.ipynb`.
+2. Đảm bảo file dữ liệu `processed_dulieuxettuyendaihoc.csv` (kết quả của tuần 1) nằm cùng thư mục.
+3. Cài đặt các thư viện cần thiết: `pip install pandas matplotlib seaborn scipy statsmodels`.
+4. Chạy lần lượt các cell để quan sát biểu đồ và bảng thống kê.
 
-Mở file 2374802010190_TranMinhHuy_week2.ipynb và thực thi các cell nội dung.
+---
 
-Tác giả
-Trần Minh Huy - MSSV: 2374802010190
+## Tác giả
+
+* Trần Minh Huy - MSSV: 2374802010190
